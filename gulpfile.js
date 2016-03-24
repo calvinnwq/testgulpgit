@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var argv = require('yargs').argv;
 var git = require('gulp-git');
+var runSequence = require('run-sequence');
 
 gulp.task('init', function() {
   console.log(argv.m);
@@ -27,4 +28,6 @@ gulp.task('push', function(){
   });
 });
 
-gulp.task('gitsend', ['add', 'commit', 'push']);
+gulp.task('gitsend', function() {
+  runSequence('add', 'commit', 'push');
+});
