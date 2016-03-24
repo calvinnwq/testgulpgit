@@ -20,6 +20,11 @@ gulp.task('commit', function() {
   }
 });
 
-gulp.task('gitsend', ['add', 'commit'], function() {
-  console.log('adding, commiting and pushing to git...');
+gulp.task('push', function(){
+  console.log('pushing...');
+  git.push('origin', 'master', function (err) {
+    if (err) throw err;
+  });
 });
+
+gulp.task('gitsend', ['add', 'commit', 'push']);
